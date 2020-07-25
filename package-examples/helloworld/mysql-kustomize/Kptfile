@@ -1,0 +1,80 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+    name: consumer
+upstream:
+    type: git
+    git:
+        commit: 26d7be1b03e30c47bc0a0eab48b845a31f936b4a
+        repo: https://github.com/ashlineldridge/kpt
+        directory: /package-examples/mysql-kustomize
+        ref: v0.26.0
+openAPI:
+    definitions:
+        io.k8s.cli.setters.cpu:
+            x-k8s-cli:
+                setter:
+                    name: cpu
+                    setBy: package-default
+                    value: 100m
+        io.k8s.cli.setters.memory:
+            x-k8s-cli:
+                setter:
+                    name: memory
+                    setBy: package-default
+                    value: 256Mi
+        io.k8s.cli.setters.mysql-database:
+            x-k8s-cli:
+                setter:
+                    name: mysql-database
+                    setBy: package-default
+                    value: ""
+        io.k8s.cli.setters.mysql-user:
+            x-k8s-cli:
+                setter:
+                    name: mysql-user
+                    setBy: package-default
+                    value: ""
+        io.k8s.cli.setters.namespace:
+            x-k8s-cli:
+                setter:
+                    name: namespace
+                    setBy: package-default
+                    value: ""
+        io.k8s.cli.setters.port:
+            x-k8s-cli:
+                setter:
+                    name: port
+                    setBy: package-default
+                    value: "3306"
+        io.k8s.cli.setters.skip-grant-tables:
+            x-k8s-cli:
+                setter:
+                    description: for bootstrapping root grants
+                    name: skip-grant-tables
+                    setBy: package-default
+                    value: "true"
+        io.k8s.cli.substitutions.mysql-database:
+            x-k8s-cli:
+                substitution:
+                    name: mysql-database
+                    pattern: mysql-database=MYSQL_DATABASE_SETTER
+                    values:
+                      - marker: MYSQL_DATABASE_SETTER
+                        ref: '#/definitions/io.k8s.cli.setters.mysql-database'
+        io.k8s.cli.substitutions.mysql-user:
+            x-k8s-cli:
+                substitution:
+                    name: mysql-user
+                    pattern: mysql-user=MYSQL_USER_SETTER
+                    values:
+                      - marker: MYSQL_USER_SETTER
+                        ref: '#/definitions/io.k8s.cli.setters.mysql-user'
+        io.k8s.cli.substitutions.skip-grant-tables:
+            x-k8s-cli:
+                substitution:
+                    name: mysql-database
+                    pattern: skip-grant-tables=SKIP_GRANT_TABLES_SETTER
+                    values:
+                      - marker: SKIP_GRANT_TABLES_SETTER
+                        ref: '#/definitions/io.k8s.cli.setters.skip-grant-tables'
