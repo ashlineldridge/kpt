@@ -21,7 +21,7 @@ configMapGenerator:
   literals:
   - skip-grant-tables=true
 secretGenerator:
-- name: mysql
+- name: mysql # {"$kpt-set":"secret-name"}
 patches:
 - patch: |-
     apiVersion: v1

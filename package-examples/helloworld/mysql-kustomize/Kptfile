@@ -5,10 +5,10 @@ metadata:
 upstream:
     type: git
     git:
-        commit: 26d7be1b03e30c47bc0a0eab48b845a31f936b4a
+        commit: 7ce1ca61142f48a212b42326038ff32441a2c6d3
         repo: https://github.com/ashlineldridge/kpt
         directory: /package-examples/mysql-kustomize
-        ref: v0.26.0
+        ref: v1.0.0
 openAPI:
     definitions:
         io.k8s.cli.setters.cpu:
@@ -47,6 +47,11 @@ openAPI:
                     name: port
                     setBy: package-default
                     value: "3306"
+        io.k8s.cli.setters.secret-name:
+            x-k8s-cli:
+                setter:
+                    name: secret-name
+                    value: mysql
         io.k8s.cli.setters.skip-grant-tables:
             x-k8s-cli:
                 setter:
