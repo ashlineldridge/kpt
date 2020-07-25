@@ -71,3 +71,8 @@ openAPI:
           name: port
           value: "3306"
           setBy: "package-default"
+    io.k8s.cli.setters.secret-name:
+      x-k8s-cli:
+        setter:
+          name: secret-name
+          value: mysql

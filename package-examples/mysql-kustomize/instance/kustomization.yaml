@@ -26,7 +26,7 @@ configMapGenerator:
   - "mysql-user=" # {"$ref":"#/definitions/io.k8s.cli.substitutions.mysql-user"}
   - "mysql-database=" # {"$ref":"#/definitions/io.k8s.cli.substitutions.mysql-database"}
 secretGenerator:
-- name: mysql
+- name: mysql # {"$kpt-set":"secret-name"}
   behavior: merge
   literals:
   - "mysql-password=password"
