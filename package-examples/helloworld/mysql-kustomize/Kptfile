@@ -5,7 +5,7 @@ metadata:
 upstream:
     type: git
     git:
-        commit: 7ce1ca61142f48a212b42326038ff32441a2c6d3
+        commit: 49940e5ecec5dc47bb575a3cb02772102092c94f
         repo: https://github.com/ashlineldridge/kpt
         directory: /package-examples/mysql-kustomize
         ref: v1.0.0
